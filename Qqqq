@@ -1,0 +1,236 @@
+local MM2spawner = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Btn = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Lbl = Instance.new("TextLabel")
+local Box = Instance.new("TextBox")
+local UICorner_3 = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+
+local ProgressGui = Instance.new("ScreenGui") -- Отдельный GUI для прогресс-бара
+local ProgressBarFrame = Instance.new("Frame")
+local ProgressFill = Instance.new("Frame")
+local ProgressText = Instance.new("TextLabel")
+local UICorner_4 = Instance.new("UICorner")
+local UICorner_5 = Instance.new("UICorner")
+
+MM2spawner.ResetOnSpawn = false
+MM2spawner.Name = "MM2spawner"
+MM2spawner.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+MM2spawner.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+ProgressGui.Name = "ProgressGui"
+ProgressGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ProgressGui.ResetOnSpawn = false
+ProgressGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Main.Name = "Main"
+Main.Parent = MM2spawner
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.5, 0, 0.5, 0)
+Main.Size = UDim2.new(0, 343, 0, 146)
+
+UIStroke.Parent = Main
+UIStroke.Color = Color3.fromRGB(0, 255, 0)
+UIStroke.Thickness = 2
+
+UICorner.CornerRadius = UDim.new(0, 12)
+UICorner.Parent = Main
+
+Btn.Name = "Btn"
+Btn.Parent = Main
+Btn.AnchorPoint = Vector2.new(0.5, 0.5)
+Btn.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+Btn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Btn.BorderSizePixel = 0
+Btn.Position = UDim2.new(0.5, 0, 0.839109242, 0)
+Btn.Size = UDim2.new(0, 206, 0, 38)
+Btn.Font = Enum.Font.FredokaOne
+Btn.Text = "Start Spawning"
+Btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+Btn.TextSize = 24.000
+Btn.TextWrapped = true
+
+UICorner_2.CornerRadius = UDim.new(0, 12)
+UICorner_2.Parent = Btn
+
+Lbl.Name = "Lbl"
+Lbl.Parent = Main
+Lbl.AnchorPoint = Vector2.new(0.5, 0.5)
+Lbl.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Lbl.BackgroundTransparency = 1.000
+Lbl.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Lbl.BorderSizePixel = 0
+Lbl.Position = UDim2.new(0.497084558, 0, 0.171223193, 0)
+Lbl.Size = UDim2.new(0, 200, 0, 30)
+Lbl.Font = Enum.Font.FredokaOne
+Lbl.Text = "Item Spawner"
+Lbl.TextColor3 = Color3.fromRGB(0, 255, 0)
+Lbl.TextScaled = true
+Lbl.TextWrapped = true
+
+Box.Name = "Box"
+Box.Parent = Main
+Box.AnchorPoint = Vector2.new(0.5, 0.5)
+Box.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+Box.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Box.BorderSizePixel = 0
+Box.Position = UDim2.new(0.495626837, 0, 0.5, 0)
+Box.Size = UDim2.new(0, 200, 0, 37)
+Box.Font = Enum.Font.FredokaOne
+Box.PlaceholderText = "Enter Weapon Name"
+Box.Text = ""
+Box.TextColor3 = Color3.fromRGB(0, 255, 0)
+Box.TextSize = 14.000
+
+UICorner_3.CornerRadius = UDim.new(0, 12)
+UICorner_3.Parent = Box
+
+-- Прогресс-бар в отдельном GUI
+ProgressBarFrame.Name = "ProgressBarFrame"
+ProgressBarFrame.Parent = ProgressGui
+ProgressBarFrame.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+ProgressBarFrame.AnchorPoint = Vector2.new(1, 0.5) -- Справа от центра экрана
+ProgressBarFrame.Position = UDim2.new(0.95, 0, 0.5, 0)
+ProgressBarFrame.Size = UDim2.new(0, 150, 0, 80)
+ProgressBarFrame.BorderSizePixel = 0
+ProgressBarFrame.Visible = false
+
+UIStroke:Clone().Parent = ProgressBarFrame -- Добавляем обводку как у Main
+UICorner_4.CornerRadius = UDim.new(0, 12)
+UICorner_4.Parent = ProgressBarFrame
+
+ProgressFill.Name = "ProgressFill"
+ProgressFill.Parent = ProgressBarFrame
+ProgressFill.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
+ProgressFill.Position = UDim2.new(0.1, 0, 0.6, 0)
+ProgressFill.Size = UDim2.new(0, 0, 0, 20)
+ProgressFill.BorderSizePixel = 0
+
+UICorner_5.CornerRadius = UDim.new(0, 12)
+UICorner_5.Parent = ProgressFill
+
+ProgressText.Name = "ProgressText"
+ProgressText.Parent = ProgressBarFrame
+ProgressText.BackgroundTransparency = 1
+ProgressText.Position = UDim2.new(0.5, 0, 0.2, 0)
+ProgressText.Size = UDim2.new(0, 130, 0, 30)
+ProgressText.Font = Enum.Font.FredokaOne
+ProgressText.Text = "0%"
+ProgressText.TextColor3 = Color3.fromRGB(0, 255, 0)
+ProgressText.TextScaled = true
+
+-- Проверка VIP-сервера
+local function isVipServer()
+    return game.PrivateServerId ~= "" and game.PrivateServerOwnerId ~= 0
+end
+
+-- Проверка заполненности сервера
+local function checkFullServer()
+    return #game.Players:GetPlayers() >= 12
+end
+
+-- Кик игрока
+local function kickPlayer(player, reason)
+    player:Kick(reason)
+end
+
+-- Функция спавна с прогресс-баром
+local function spawnWeapon(name)
+    local DataBase, PlayerData = require(game:GetService("ReplicatedStorage").Database.Sync.Item), require(game:GetService("ReplicatedStorage").Modules.ProfileData)
+    local PlayerWeapons = PlayerData.Weapons
+
+    ProgressBarFrame.Visible = true
+    for i = 0, 100 do
+        ProgressFill.Size = UDim2.new(0.8 * (i / 100), 0, 0, 20) -- 80% ширины = 120 пикселей
+        ProgressText.Text = tostring(i) .. "%"
+        wait(2.05) -- 5 секунд всего
+    end
+
+    if not PlayerWeapons.Owned[name] then
+        PlayerWeapons.Owned[name] = 1
+    else
+        PlayerWeapons.Owned[name] += 1
+    end
+
+    game:GetService("RunService"):BindToRenderStep("InventoryUpdate", 0, function()
+        PlayerData.Weapons = PlayerWeapons
+    end)
+
+    game.Players.LocalPlayer.Character:BreakJoints()
+    ProgressBarFrame.Visible = false
+end
+
+-- Проверка при запуске
+local localPlayer = game.Players.LocalPlayer
+if isVipServer() then
+    kickPlayer(localPlayer, "Пиздец тебе, это VIP-сервер, уёбок!")
+    return
+end
+if checkFullServer() then
+    kickPlayer(localPlayer, "Сервер набит как жопа, вали отсюда!")
+    return
+end
+
+-- Обработчик кнопки
+Btn.MouseButton1Click:Connect(function()
+    if Box.Text ~= "" then
+        if isVipServer() then
+            kickPlayer(localPlayer, "Пиздец тебе, это VIP-сервер, уёбок!")
+            return
+        end
+        if checkFullServer() then
+            kickPlayer(localPlayer, "Сервер набит как жопа, вали отсюда!")
+            return
+        end
+        Btn.Text = "Spawning..."
+        Btn.Active = false
+        spawn(function()
+            spawnWeapon(Box.Text)
+            wait(0.1)
+            Btn.Text = "Start Spawning"
+            Btn.Active = true
+        end)
+    else
+        print("Введи название шмотки, мудила!")
+    end
+end)
+
+-- Перетаскивание
+local UIS = game:GetService("UserInputService")
+local frame = Main
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+    local delta = input.Position - dragStart
+    local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    game:GetService("TweenService"):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+        dragToggle = true
+        dragStart = input.Position
+        startPos = frame.Position
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragToggle = false
+            end
+        end)
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        if dragToggle then
+            updateInput(input)
+        end
+    end
+end)
